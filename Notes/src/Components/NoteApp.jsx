@@ -31,21 +31,22 @@ export default function Notes({ notes, setNotes, showContent }) {
   };
 
   return (
-    <div className="w-[1100px] ml-36 mt-3">
+    <div className="w-[1100px] ml-32 mt-3">
       <div className="flex flex-wrap m-3 p-5">
         {notes.map((note, index) => (
           <div
             key={index}
             className={`w-[310px] h-[250px] p-2 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
           >
-            <div className="flex">
-              <AiOutlineDelete
-                className="ml-2 mt-2 text-xl cursor-pointer"
-                onClick={() => handleDeleteNote(index)}
-              />
+            <div className="flex justify-end">
+              
               <AiOutlineEdit
-                className="ml-2 mt-2 text-xl cursor-pointer"
+                className="mt-2 mr-2 text-xl cursor-pointer"
                 onClick={() => handleEditNote(index, note.content)}
+              />
+              <AiOutlineDelete
+                className="mr-2 mt-2 text-xl cursor-pointer"
+                onClick={() => handleDeleteNote(index)}
               />
             </div>
 
@@ -53,10 +54,11 @@ export default function Notes({ notes, setNotes, showContent }) {
               <div>
                 <textarea
                   value={editContent}
-                  className="p-2 ml-2 mt-2"
+                  className="p-2 ml-2 mt-2 resize-none"
                   onChange={(e) => setEditContent(e.target.value)}
                   rows={5}
                   cols={30}
+                  
                 />
                 <button
                   onClick={() => handleUpdateNote(index)}
@@ -75,7 +77,7 @@ export default function Notes({ notes, setNotes, showContent }) {
                     className="absolute right-2  cursor-pointer"
                     onClick={() => showContent(index)}
                   >
-                    <AiOutlineArrowUp className="text-2xl   mt-4" />
+                    <AiOutlineArrowUp className="text-2xl mt-4" />
                   </div>
                 )}
               </div>

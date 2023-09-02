@@ -31,21 +31,22 @@ const Add = ({onAddNote}) => {
         <div>
             <div className="flex justify-center">
                 <div
-                    className="border border-purple-800 bg-purple-600 rounded-full w-11 h-11  mt-12 mb-12 text-3xl hover:rotate-90 duration-700 cursor-pointer text-center"
+                    className="border border-purple-800 bg-purple-600 rounded-full w-11 h-11  mt-12 mb-12 text-3xl hover:rotate-90 duration-700 cursor-pointer text-center hover:scale-110"
                     onClick={handelShowTextArea}>
                     +
                 </div>
+                
             
 
             {showTextarea && (
-                <div className="absolute top-20 left-20 w-96">
+                <div className="absolute top-20 left-40 z-10 w-96">
                         <textarea
                             name=""
                             id=""
                             cols="30"
                             rows="10"
                             className={`border ml-16 border-black p-2 ${selectedColor} resize-none `}
-                            style={{ backgroundColor: "white" }}
+                            style={{ backgroundColor: {selectedColor} }}
                             value={textareaContent}
                             onChange={handelTextAreaContent}
                         />
