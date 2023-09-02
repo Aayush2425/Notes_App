@@ -19,7 +19,7 @@ const Notes = () => {
       <div>
       <Add onAddNote={onHandelAddNote} />
 
-      <Rough
+      <NoteApp
         notes={notes}
         setNotes={setNotes}
         showContent={handleShowFullContent}

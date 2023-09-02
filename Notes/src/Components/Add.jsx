@@ -29,9 +29,9 @@ const Add = ({onAddNote}) => {
     };
     return (
         <div>
-            <div className="flex justify-start">
+            <div className="flex justify-center">
                 <div
-                    className="border border-purple-800 bg-purple-600 rounded-full w-11 h-11 ml-24 mt-12 text-3xl hover:rotate-90 duration-1000 cursor-pointer text-center"
+                    className="border border-purple-800 bg-purple-600 rounded-full w-11 h-11  mt-12 mb-12 text-3xl hover:rotate-90 duration-700 cursor-pointer text-center"
                     onClick={handelShowTextArea}>
                     +
                 </div>
@@ -44,21 +44,22 @@ const Add = ({onAddNote}) => {
                             id=""
                             cols="30"
                             rows="10"
-                            className={`border border-black p-2 ${selectedColor} resize-none `}
+                            className={`border ml-16 border-black p-2 ${selectedColor} resize-none `}
                             style={{ backgroundColor: "white" }}
                             value={textareaContent}
                             onChange={handelTextAreaContent}
                         />
                 
-                <div className="flex ml-[120px]">
-                            <button className="p-2 w-16 bg-sky-400 rounded"
-                            onClick={handleAddNote}>
-                        Add
-                    </button>
-                            <button className="p-2 w-16 ml-3 bg-green-500 rounded"
+                        <div className="flex ml-[120px]">
+                            <button className="p-2 w-16  bg-green-500 rounded"
                             onClick={handleColorButtonClick}>
                         Color
                     </button>
+                            <button className="p-2 w-16 ml-3 bg-sky-400 rounded"
+                            onClick={handleAddNote}>
+                        Add
+                    </button>
+                            
                 </div>
                 {showColorOptions && <Color onSelectColor={handleColorSelect} />}
             </div>

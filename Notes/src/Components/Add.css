@@ -1,0 +1,6 @@
+.btn:hover+.slide-effect{
+    display:flex;
+}
+.slide-effect{
+    display: none;
+}
