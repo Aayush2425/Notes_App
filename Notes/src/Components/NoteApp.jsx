@@ -36,7 +36,7 @@ export default function Notes({ notes, setNotes, showContent }) {
         {notes.map((note, index) => (
           <div
             key={index}
-            className={`w-[310px] h-[250px] p-2 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
+            className={`w-[310px] h-[250px] py-2 px-5 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
           >
             <div className="flex justify-end">
               

@@ -45,7 +45,7 @@ const Add = ({onAddNote}) => {
                             id=""
                             cols="30"
                             rows="10"
-                            className={`border ml-16 border-black p-2 ${selectedColor} resize-none `}
+                            className={`border ml-16 border-black p-4 ${selectedColor} resize-none `}
                             style={{ backgroundColor: {selectedColor} }}
                             value={textareaContent}
                             onChange={handelTextAreaContent}
