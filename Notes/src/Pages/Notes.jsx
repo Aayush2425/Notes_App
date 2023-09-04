@@ -3,7 +3,7 @@ import Add from "../Components/Add";
 import FullContent from "../Components/FullContent";
 import NoteApp from "../Components/NoteApp";
 import Rough from "../Components/rough"
-
+import Header from "../Components/Header";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [fullContentIndex, setFullContentIndex] = useState(null);
@@ -16,7 +16,9 @@ const Notes = () => {
   };
 
   return (
-      <div>
+    <>
+      <Header/>
+    <div>
       <Add onAddNote={onHandelAddNote} />
 
       <NoteApp
@@ -30,7 +32,8 @@ const Notes = () => {
           setShowContent={() => setFullContentIndex(null)} />
       )}
     </div>
-  )
+    </>
+    )
 }
 
 export default Notes
