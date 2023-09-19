@@ -19,8 +19,8 @@ const SignIn = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: signInEmail, password: signInPassword })
       })
-      .then(res => res.json())
-      .then(res => {
+      .then(async res => res.json())
+      .then(async res => {
         console.log(res)
         if (res === "success") {
           navigate("/Notes");

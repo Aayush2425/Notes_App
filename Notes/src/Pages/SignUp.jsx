@@ -53,7 +53,7 @@ const SignUp = () => {
               <input type="password" placeholder="Confirm password" className="mx-4 p-3 my-2.5 rounded-sm" onChange={onConfirmPasswordChange}/>
         <a href="#" className="flex justify-end mr-5 text-lg text-purple-950 mb-3 underline hover:text-purple-900">Need help?</a>
         <div className="flex justify-center mb-5">
-              <button className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 " onClick={onSubmitSignUp}>Create</button>
+              <button className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 " onClick={onSubmitSignUp}>Create Account</button>
         </div>      
       </form>
             
