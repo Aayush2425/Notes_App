@@ -9,7 +9,7 @@ export default function App() {
     <div className="w-full ">
         <BrowserRouter>
           <Routes>
-            <Route path="/SignIn" element={<SignIn />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/Notes/:id" element={<Notes />} />
           </Routes>

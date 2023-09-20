@@ -35,7 +35,7 @@ const SignUp = () => {
             password: signUpPassword
           })
       })
-    navigate("/Notes");   
+    navigate("/Notes"+id);   
     e.preventDefault();
   }
 
@@ -45,7 +45,7 @@ const SignUp = () => {
               <h1 className="text-2xl text-center font-medium mt-6  mb-4">Create new Account </h1>
               <div className="flex justify-center mb-4">
                     <h3>Already have an Account?</h3>
-                    <Link to="/SignIn" className="text-purple-950 ml-2 underline hover:text-purple-900">Sign In</Link>
+                    <Link to="/" className="text-purple-950 ml-2 underline hover:text-purple-900">Sign In</Link>
               </div>
               <input type="text" placeholder="Username" className=" mx-4 my-2.5 p-3 rounded-sm" onChange={onUserNameChange}/>
               <input type="email" placeholder="Email" className=" mx-4 my-2.5 p-3 rounded-sm" onChange={onEmailChange}/>

@@ -1,7 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
+import { get } from "mongoose";
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -17,7 +18,7 @@ const url =
 const client = new MongoClient(url);
 const dbName = "UserInfo";
 // login details check
-app.post("/SignIn", (req, res) => {
+app.post("/", (req, res) => {
   const { email, password } = req.body;
   check(email, password);
   async function check(email, password) {
@@ -27,16 +28,11 @@ app.post("/SignIn", (req, res) => {
       const db = client.db(dbName);
       const col = db.collection("User");
 
-      let personDocument = {
-        email: email,
-        password: password,
-        joiningDate: new Date(),
-      };
-
       const filter = { email: email, password: password };
       const document = await col.findOne(filter);
+
       if (document) {
-        res.json("success");
+        res.status(200).json({ message: "success", id: document._id });
       } else {
         res.json("fail");
       }
@@ -46,8 +42,6 @@ app.post("/SignIn", (req, res) => {
       await client.close();
     }
   }
-
-  run().catch(console.dir);
 });
 // new user sign up
 app.post("/SignUp", (req, res) => {
@@ -80,14 +74,28 @@ app.post("/SignUp", (req, res) => {
 // get user profile
 app.get("/Notes/:id", (req, res) => {
   const { id } = req.params;
-  let found = false;
-  Database.users.forEach((user) => {
-    if (user.id == id) {
-      found = true;
-      return res.json(user);
+  console.log(id);
+  getdata();
+  async function getdata() {
+    try {
+      await client.connect();
+      console.log("Successfully connected to Atlas 2");
+      const db = client.db(dbName);
+      const col = db.collection("User");
+
+      const filter = { _id: new ObjectId(`${id}`) };
+      const document = await col.findOne(filter);
+      console.log(document);
+      if (document) {
+        console.log("Found a document with id " + id + " " + document.name);
+        res.json(document);
+      } else {
+        res.json("fail");
+      }
+    } catch (err) {
+      console.log(err.stack);
+    } finally {
+      await client.close();
     }
-  });
-  if (!found) {
-    res.status(400).json("no user found");
   }
 });

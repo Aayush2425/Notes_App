@@ -13,7 +13,7 @@ const SignIn = () => {
   }
 
   const onSubmitSignIn = (e) => {
-    fetch("http://localhost:4000/SignIn",
+    fetch("http://localhost:4000",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -21,9 +21,9 @@ const SignIn = () => {
       })
       .then(async res => res.json())
       .then(async res => {
-        console.log(res)
-        if (res === "success") {
-          navigate("/Notes");
+        
+        if (res.message === "success") {
+          navigate("/Notes/"+res.id);
         }
       })
     e.preventDefault();
