@@ -23,7 +23,7 @@ const SignUp = () => {
     setSignUpConfirmPassword(e.target.value);
   }
 
-  const onSubmitSignUp = (e) => {
+  const onSubmitSignUp =async (e) => {
     fetch("http://localhost:4000/SignUp",
       {
         method: "POST",
@@ -34,8 +34,10 @@ const SignUp = () => {
             email: signUpEmail,
             password: signUpPassword
           })
-      })
-    navigate("/Notes"+id);   
+      }).then(async res => res.json())
+      .then(async res => {
+          navigate("/Notes/"+res.id);
+      }) 
     e.preventDefault();
   }
 

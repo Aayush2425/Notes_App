@@ -24,7 +24,7 @@ app.post("/", (req, res) => {
   async function check(email, password) {
     try {
       await client.connect();
-      console.log("Successfully connected to Atlas");
+      console.log("Successfully connected to Atlas SignIn");
       const db = client.db(dbName);
       const col = db.collection("User");
 
@@ -50,7 +50,7 @@ app.post("/SignUp", (req, res) => {
   async function newdata(email, name, password) {
     try {
       await client.connect();
-      console.log("Successfully connected to Atlas");
+      console.log("Successfully connected to Atlas SignUp");
       const db = client.db(dbName);
       const col = db.collection("User");
 
@@ -62,13 +62,14 @@ app.post("/SignUp", (req, res) => {
       };
 
       const p = await col.insertOne(personDocument);
+
+      res.status(200).json({ id: p.insertedId });
     } catch (err) {
       console.log(err.stack);
     } finally {
       await client.close();
     }
   }
-  res.json(email, name, password);
 });
 
 // get user profile
@@ -79,7 +80,7 @@ app.get("/Notes/:id", (req, res) => {
   async function getdata() {
     try {
       await client.connect();
-      console.log("Successfully connected to Atlas 2");
+      console.log("Successfully connected to Atlas Profile");
       const db = client.db(dbName);
       const col = db.collection("User");
 
