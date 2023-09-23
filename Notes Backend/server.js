@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { MongoClient, ObjectId } from "mongodb";
-import { get } from "mongoose";
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -20,6 +19,7 @@ const dbName = "UserInfo";
 // login details check
 app.post("/", (req, res) => {
   const { email, password } = req.body;
+
   check(email, password);
   async function check(email, password) {
     try {
@@ -59,6 +59,7 @@ app.post("/SignUp", (req, res) => {
         email: email,
         password: password,
         joiningDate: new Date(),
+        Notes: [],
       };
 
       const p = await col.insertOne(personDocument);
@@ -86,7 +87,7 @@ app.get("/Notes/:id", (req, res) => {
 
       const filter = { _id: new ObjectId(`${id}`) };
       const document = await col.findOne(filter);
-      console.log(document);
+      // console.log(document);
       if (document) {
         console.log("Found a document with id " + id + " " + document.name);
         res.json(document);
@@ -99,4 +100,35 @@ app.get("/Notes/:id", (req, res) => {
       await client.close();
     }
   }
+});
+
+// New Notes Added
+
+app.post("/Notes/:id", async (req, res) => {
+  const { id } = req.params;
+  const { content, color } = req.body;
+  try {
+    client.connect();
+    console.log("Successfully connected to Atlas Notes");
+    const db = client.db(dbName);
+    const col = db.collection("User");
+    let Notes = {
+      content: content,
+      color: color,
+    };
+
+    const filter = { _id: new ObjectId(`${id}`) };
+    const document = await col.findOne(filter);
+    // console.log(document);
+    if (document) {
+      document.Notes.push(Notes);
+      await col.updateOne(filter, {
+        $push: { Notes: Notes },
+      });
+      console.log("Notes = ", document.Notes);
+    } else {
+      console.log("Failed");
+      res.json("fail");
+    }
+  } catch {}
 });

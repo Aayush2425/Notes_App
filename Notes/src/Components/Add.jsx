@@ -1,6 +1,8 @@
+import { useParams } from "react-router-dom";
 import Color from "./Color";
 import { useState } from "react";
-const Add = ({onAddNote}) => {
+const Add = ({ onAddNote }) => {
+    const { id } = useParams();
     const [showTextarea, setShowTextarea] = useState(false);
     const [textareaContent, setTextareaContent] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
@@ -22,10 +24,23 @@ const Add = ({onAddNote}) => {
     };
 
     const handleAddNote = () => {
-    onAddNote({ content: textareaContent, color: selectedColor });
-    setTextareaContent("");
-    setSelectedColor("");
-    setShowTextarea(false);
+        
+        onAddNote({ content: textareaContent, color: selectedColor });
+        
+        fetch("http://localhost:4000/Notes/" + id,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: textareaContent, color: selectedColor })
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+            })
+        setTextareaContent("");
+        setSelectedColor("");
+        setShowTextarea(false);
+    
     };
     return (
         <div>

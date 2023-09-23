@@ -8,12 +8,17 @@ import { useParams } from "react-router-dom";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [fullContentIndex, setFullContentIndex] = useState(null);
+  // const [previousNotes, setPreviousNotes] = useState([]);
   const { id } = useParams();
   const [Name, Username] = useState("");
   useEffect(() => {
     fetch("http://localhost:4000/Notes/" + id)
       .then( res =>  res.json())
-      .then( res => Username(res.name))
+      .then(res => {
+        console.log("hello = ",res)
+        Username(res.name);
+        setNotes(res.Notes);
+      })
 }, []);
 
   const onHandelAddNote = (content) => {
