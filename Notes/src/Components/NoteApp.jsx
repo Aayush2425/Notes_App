@@ -4,14 +4,28 @@ import {
   AiOutlineEdit,
   AiOutlineArrowUp,
 } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 
 export default function Notes({ notes, setNotes, showContent }) {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editContent, setEditContent] = useState("");
+  const { id } = useParams();
+
+
 
   const handleDeleteNote = (index) => {
     const updatedNotes = notes.filter((_, i) => i !== index);
+    
     setNotes(updatedNotes);
+    fetch("http://localhost:4000/Notes/" + id,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      },
+      
+    )
+      .then(res => res.json())
+    .then(res=>console.log(res))
   };
 
   const handleEditNote = (index, content) => {
@@ -25,6 +39,16 @@ export default function Notes({ notes, setNotes, showContent }) {
         i === index ? { ...note, content: editContent } : note
       );
       setNotes(updatedNotes);
+
+      fetch("http://localhost:4000/Notes/" + id,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: editContent })
+        })
+        .then(res => res.json())
+        .then(res => console.log(res))
+
       setEditingIndex(null);
       setEditContent("");
     }

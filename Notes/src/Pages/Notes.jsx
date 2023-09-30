@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Add from "../Components/Add";
 import FullContent from "../Components/FullContent";
 import NoteApp from "../Components/NoteApp";
-import Rough from "../Components/rough"
+import Loading from "../Components/Loading";
 import Header from "../Components/Header";
 import { useParams } from "react-router-dom";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [fullContentIndex, setFullContentIndex] = useState(null);
   // const [previousNotes, setPreviousNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [Name, Username] = useState("");
   useEffect(() => {
@@ -18,6 +19,7 @@ const Notes = () => {
         console.log("hello = ",res)
         Username(res.name);
         setNotes(res.Notes);
+        setLoading(false);
       })
 }, []);
 
@@ -30,6 +32,7 @@ const Notes = () => {
 
   return (
     <>
+      {loading && <Loading />}
       <Header Name={Name} />
     <div>
       <Add onAddNote={onHandelAddNote} />

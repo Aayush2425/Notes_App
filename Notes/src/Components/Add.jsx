@@ -25,8 +25,6 @@ const Add = ({ onAddNote }) => {
 
     const handleAddNote = () => {
         
-        onAddNote({ content: textareaContent, color: selectedColor });
-        
         fetch("http://localhost:4000/Notes/" + id,
             {
                 method: "POST",
@@ -37,6 +35,7 @@ const Add = ({ onAddNote }) => {
             .then(res => {
                 console.log(res)
             })
+        onAddNote({ content: textareaContent, color: selectedColor });
         setTextareaContent("");
         setSelectedColor("");
         setShowTextarea(false);

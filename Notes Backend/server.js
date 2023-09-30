@@ -112,18 +112,76 @@ app.post("/Notes/:id", async (req, res) => {
     console.log("Successfully connected to Atlas Notes");
     const db = client.db(dbName);
     const col = db.collection("User");
+    const filter = { _id: new ObjectId(`${id}`) };
+    console.log("ID :=>", filter);
+    const document = await col.findOne(filter);
+    console.log("Documrnt :=>", document);
     let Notes = {
       content: content,
       color: color,
     };
-
-    const filter = { _id: new ObjectId(`${id}`) };
-    const document = await col.findOne(filter);
-    // console.log(document);
+    console.log(Notes);
+    console.log("Filter :", filter);
     if (document) {
       document.Notes.push(Notes);
       await col.updateOne(filter, {
         $push: { Notes: Notes },
+      });
+      console.log("Notes = ", document.Notes);
+      res.status(200).json({ message: "success", document: document });
+    } else {
+      console.log("Failed");
+      res.json("fail");
+    }
+  } catch {}
+});
+
+app.delete("/Notes/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    client.connect();
+    console.log("Successfully connected to Atlas delete");
+    const db = client.db(dbName);
+    const col = db.collection("User");
+    const filter = { _id: new ObjectId(`${id}`) };
+    const document = await col.findOne(filter);
+
+    console.log("Filter :", filter);
+    console.log(document);
+    if (document) {
+      document.Notes.shift();
+      await col.updateOne(filter, {
+        $pop: { Notes: -1 },
+      });
+      console.log("Notes = ", document.Notes);
+    } else {
+      console.log("Failed");
+      res.json("fail");
+    }
+  } catch {}
+});
+
+app.put("/Notes/:id", async (req, res) => {
+  const { id } = req.params;
+  const { content, color, index } = req.body;
+  try {
+    client.connect();
+    console.log("Successfully connected to Atlas update");
+    const db = client.db(dbName);
+    const col = db.collection("User");
+    const filter = { _id: new ObjectId(`${id}`) };
+    const document = await col.findOne(filter);
+    let Notes = {
+      content: content,
+      color: color,
+    };
+    console.log("Filter :", filter);
+    console.log(document);
+    if (document) {
+      document.Notes[index].content = content;
+      document.Notes[index].color = color;
+      await col.updateOne(filter, {
+        $set: { Notes: document.Notes },
       });
       console.log("Notes = ", document.Notes);
     } else {
