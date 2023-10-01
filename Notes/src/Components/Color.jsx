@@ -7,7 +7,7 @@ export default function Color({ onSelectColor }) {
     "bg-sky-300",
     "bg-red-300",
     "bg-violet-300",
-    "bg-amber-300"
+    "bg-amber-300",
   ];
 
   return (

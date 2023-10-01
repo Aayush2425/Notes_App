@@ -14,18 +14,18 @@ const Notes = () => {
   const [Name, Username] = useState("");
   useEffect(() => {
     fetch("http://localhost:4000/Notes/" + id)
-      .then( res =>  res.json())
-      .then(res => {
-        console.log("hello = ",res)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("hello = ", res);
         Username(res.name);
         setNotes(res.Notes);
         setLoading(false);
-      })
-}, []);
+      });
+  }, []);
 
   const onHandelAddNote = (content) => {
-    setNotes([...notes,content])
-  }
+    setNotes([...notes, content]);
+  };
   const handleShowFullContent = (index) => {
     setFullContentIndex(index);
   };
@@ -34,22 +34,23 @@ const Notes = () => {
     <>
       {loading && <Loading />}
       <Header Name={Name} />
-    <div>
-      <Add onAddNote={onHandelAddNote} />
+      <div>
+        <Add onAddNote={onHandelAddNote} />
 
-      <NoteApp
-        notes={notes}
-        setNotes={setNotes}
-        showContent={handleShowFullContent}
-      />
-      {fullContentIndex !== null && (
-        <FullContent
-          content={notes[fullContentIndex].content}
-          setShowContent={() => setFullContentIndex(null)} />
-      )}
-    </div>
+        <NoteApp
+          notes={notes}
+          setNotes={setNotes}
+          showContent={handleShowFullContent}
+        />
+        {fullContentIndex !== null && (
+          <FullContent
+            content={notes[fullContentIndex].content}
+            setShowContent={() => setFullContentIndex(null)}
+          />
+        )}
+      </div>
     </>
-    )
-}
+  );
+};
 
-export default Notes
+export default Notes;

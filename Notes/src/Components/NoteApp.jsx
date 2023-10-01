@@ -11,21 +11,16 @@ export default function Notes({ notes, setNotes, showContent }) {
   const [editContent, setEditContent] = useState("");
   const { id } = useParams();
 
-
-
   const handleDeleteNote = (index) => {
     const updatedNotes = notes.filter((_, i) => i !== index);
-    
+
     setNotes(updatedNotes);
-    fetch("http://localhost:4000/Notes/" + id,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      },
-      
-    )
-      .then(res => res.json())
-    .then(res=>console.log(res))
+    fetch("http://localhost:4000/Notes/" + id, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   };
 
   const handleEditNote = (index, content) => {
@@ -40,14 +35,13 @@ export default function Notes({ notes, setNotes, showContent }) {
       );
       setNotes(updatedNotes);
 
-      fetch("http://localhost:4000/Notes/" + id,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content: editContent })
-        })
-        .then(res => res.json())
-        .then(res => console.log(res))
+      fetch("http://localhost:4000/Notes/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: editContent }),
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res));
 
       setEditingIndex(null);
       setEditContent("");
@@ -63,7 +57,6 @@ export default function Notes({ notes, setNotes, showContent }) {
             className={`w-[310px] h-[250px] py-2 px-5 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
           >
             <div className="flex justify-end">
-              
               <AiOutlineEdit
                 className="mt-2 mr-2 text-xl cursor-pointer"
                 onClick={() => handleEditNote(index, note.content)}
@@ -82,7 +75,6 @@ export default function Notes({ notes, setNotes, showContent }) {
                   onChange={(e) => setEditContent(e.target.value)}
                   rows={5}
                   cols={30}
-                  
                 />
                 <button
                   onClick={() => handleUpdateNote(index)}
