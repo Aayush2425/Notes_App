@@ -18,6 +18,7 @@ export default function Notes({ notes, setNotes, showContent }) {
     fetch("http://localhost:4000/Notes/" + id, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ index: index }),
     })
       .then((res) => res.json())
       .then((res) => console.log(res));
@@ -38,7 +39,7 @@ export default function Notes({ notes, setNotes, showContent }) {
       fetch("http://localhost:4000/Notes/" + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: editContent }),
+        body: JSON.stringify({ content: editContent, index: index }),
       })
         .then((res) => res.json())
         .then((res) => console.log(res));
@@ -78,7 +79,7 @@ export default function Notes({ notes, setNotes, showContent }) {
                 />
                 <button
                   onClick={() => handleUpdateNote(index)}
-                  className="bg-sky-300 p-2 rounded mt-2 ml-2"
+                  className="bg-sky-500 p-2 rounded mt-2 ml-2"
                 >
                   Update
                 </button>

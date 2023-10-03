@@ -108,20 +108,21 @@ app.post("/Notes/:id", async (req, res) => {
   const { id } = req.params;
   const { content, color } = req.body;
   try {
-    client.connect();
+    await client.connect();
     console.log("Successfully connected to Atlas Notes");
     const db = client.db(dbName);
     const col = db.collection("User");
     const filter = { _id: new ObjectId(`${id}`) };
     console.log("ID :=>", filter);
     const document = await col.findOne(filter);
+
     console.log("Documrnt :=>", document);
     let Notes = {
       content: content,
       color: color,
     };
-    console.log(Notes);
-    console.log("Filter :", filter);
+    // console.log(Notes);
+    // console.log("Filter :", filter);
     if (document) {
       document.Notes.push(Notes);
       await col.updateOne(filter, {
@@ -138,52 +139,59 @@ app.post("/Notes/:id", async (req, res) => {
 
 app.delete("/Notes/:id", async (req, res) => {
   const { id } = req.params;
+  const { index } = req.body;
   try {
-    client.connect();
+    await client.connect();
     console.log("Successfully connected to Atlas delete");
     const db = client.db(dbName);
     const col = db.collection("User");
     const filter = { _id: new ObjectId(`${id}`) };
+    // res.send(filter);
+    // console.log(filter);
+    const a = `Notes.${index}`;
+    // console.log("aaaaa >", a);
     const document = await col.findOne(filter);
-
-    console.log("Filter :", filter);
-    console.log(document);
+    // console.log("Filter :", filter);
+    // console.log("document  >", document);
     if (document) {
-      document.Notes.shift();
-      await col.updateOne(filter, {
-        $pop: { Notes: -1 },
-      });
-      console.log("Notes = ", document.Notes);
+      await col.updateOne(filter, { $unset: { [a]: "1" } });
+      await col.updateOne(filter, { $pull: { Notes: null } });
+      const pa = await col.findOne(filter);
+      res.json({ msg: "success" });
+      console.log("Notes = ", pa);
     } else {
       console.log("Failed");
       res.json("fail");
     }
-  } catch {}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.put("/Notes/:id", async (req, res) => {
   const { id } = req.params;
-  const { content, color, index } = req.body;
+  const { content, index } = req.body;
   try {
-    client.connect();
+    await client.connect();
     console.log("Successfully connected to Atlas update");
     const db = client.db(dbName);
     const col = db.collection("User");
     const filter = { _id: new ObjectId(`${id}`) };
-    const document = await col.findOne(filter);
-    let Notes = {
-      content: content,
-      color: color,
-    };
     console.log("Filter :", filter);
+    const document = await col.findOne(filter);
     console.log(document);
     if (document) {
-      document.Notes[index].content = content;
-      document.Notes[index].color = color;
-      await col.updateOne(filter, {
-        $set: { Notes: document.Notes },
-      });
-      console.log("Notes = ", document.Notes);
+      const updateValue = { $set: {} };
+      // console.log("Notes = ", document.Notes[index].color);
+      updateValue["$set"]["Notes." + index] = {
+        content: content,
+        color: document.Notes[index].color,
+      };
+      await col.updateOne(filter, updateValue);
+      const pa = await col.findOne(filter);
+
+      console.log("Notes = ", pa);
+      res.json({ msg: "success" });
     } else {
       console.log("Failed");
       res.json("fail");
