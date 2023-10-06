@@ -13,6 +13,7 @@ const Add = ({ onAddNote }) => {
   };
   const handelTextAreaContent = (e) => {
     setTextareaContent(e.target.value);
+    console.log(textareaContent);
   };
   const handleColorButtonClick = () => {
     setShowColorOptions((prevShowColorOptions) => !prevShowColorOptions);
@@ -50,16 +51,18 @@ const Add = ({ onAddNote }) => {
 
         {showTextarea && (
           <div className="absolute top-20 left-40 z-10 w-96">
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              className={`border ml-16 border-black p-4 ${selectedColor} resize-none `}
-              style={{ backgroundColor: { selectedColor } }}
-              value={textareaContent}
-              onChange={handelTextAreaContent}
-            />
+            <pre>
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                className={`border ml-16 border-black p-4 ${selectedColor} resize-none `}
+                style={{ backgroundColor: { selectedColor } }}
+                value={textareaContent}
+                onChange={handelTextAreaContent}
+              />
+            </pre>
 
             <div className="flex ml-[120px]">
               <button
