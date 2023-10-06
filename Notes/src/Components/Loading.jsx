@@ -1,4 +1,5 @@
 import { BsDot } from "react-icons/bs";
+import { PacmanLoader } from "react-spinners";
 const Loading = () => {
   return (
     <div className="flex justify-center backdrop-blur-3xl absolute z-50 items-center h-[100vh] w-full ">

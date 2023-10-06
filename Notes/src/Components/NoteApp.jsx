@@ -50,7 +50,7 @@ export default function Notes({ notes, setNotes, showContent }) {
   };
 
   return (
-    <div className="w-[1100px] ml-32 mt-3">
+    <div className="w-[1100px] ml-32 mt-3 h-[400px] fixed overflow-auto">
       <div className="flex flex-wrap m-3 p-5">
         {notes.map((note, index) => (
           <div

@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom";
 import Color from "./Color";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useDrag from "./UseDrag";
 const Add = ({ onAddNote }) => {
   const { id } = useParams();
   const [showTextarea, setShowTextarea] = useState(false);
   const [textareaContent, setTextareaContent] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [showColorOptions, setShowColorOptions] = useState(false);
+  const draggableRef = useRef(null);
+
+  const { position, handleMouseDown } = useDrag({
+    ref: draggableRef,
+  });
 
   const handelShowTextArea = () => {
     setShowTextarea((prevShowTextarea) => !prevShowTextarea);
@@ -25,19 +31,24 @@ const Add = ({ onAddNote }) => {
   };
 
   const handleAddNote = () => {
-    fetch("http://localhost:4000/Notes/" + id, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: textareaContent, color: selectedColor }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-    onAddNote({ content: textareaContent, color: selectedColor });
-    setTextareaContent("");
-    setSelectedColor("");
-    setShowTextarea(false);
+    if (textareaContent != "") {
+      fetch("http://localhost:4000/Notes/" + id, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: textareaContent,
+          color: selectedColor,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+        });
+      onAddNote({ content: textareaContent, color: selectedColor });
+      setTextareaContent("");
+      setSelectedColor("");
+      setShowTextarea(false);
+    }
   };
   return (
     <div>
@@ -50,21 +61,29 @@ const Add = ({ onAddNote }) => {
         </div>
 
         {showTextarea && (
-          <div className="absolute top-20 left-40 z-10 w-96">
-            <pre>
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-                className={`border ml-16 border-black p-4 ${selectedColor} resize-none `}
-                style={{ backgroundColor: { selectedColor } }}
-                value={textareaContent}
-                onChange={handelTextAreaContent}
-              />
-            </pre>
+          <div
+            className="absolute top-20 left-40 z-10 w-96 "
+            ref={draggableRef}
+            style={{
+              top: position.y,
+              left: position.x,
+            }}
+          >
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              className={`border ml-16 border-black p-4 ${selectedColor} resize-none whitespace-pre `}
+              style={{ backgroundColor: { selectedColor } }}
+              value={textareaContent}
+              onChange={handelTextAreaContent}
+            />
 
-            <div className="flex ml-[120px]">
+            <div
+              className="flex  justify-center  hover:cursor-move"
+              onMouseDown={handleMouseDown}
+            >
               <button
                 className="p-2 w-16  bg-green-500 rounded"
                 onClick={handleColorButtonClick}
