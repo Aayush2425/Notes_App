@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import Color from "./Color";
 import {
   AiOutlineDelete,
   AiOutlineEdit,
@@ -9,6 +11,9 @@ import { useParams } from "react-router-dom";
 export default function Notes({ notes, setNotes, showContent }) {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editContent, setEditContent] = useState("");
+  const [editChoice, setEditChoice] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [showColorOptions, setShowColorOptions] = useState(false);
   const { id } = useParams();
 
   const handleDeleteNote = (index) => {
@@ -25,21 +30,35 @@ export default function Notes({ notes, setNotes, showContent }) {
   };
 
   const handleEditNote = (index, content) => {
+    setEditChoice((prev) => !prev);
     setEditingIndex(index);
     setEditContent(content);
   };
+  const handleColorButtonClick = () => {
+    setShowColorOptions((prevShowColorOptions) => !prevShowColorOptions);
+  };
 
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setShowColorOptions(false);
+  };
   const handleUpdateNote = (index) => {
     if (editContent.trim() !== "") {
       const updatedNotes = notes.map((note, i) =>
-        i === index ? { ...note, content: editContent } : note
+        i === index
+          ? { ...note, content: editContent, color: selectedColor }
+          : note
       );
       setNotes(updatedNotes);
 
       fetch("http://localhost:4000/Notes/" + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: editContent, index: index }),
+        body: JSON.stringify({
+          content: editContent,
+          index: index,
+          color: selectedColor,
+        }),
       })
         .then((res) => res.json())
         .then((res) => console.log(res));
@@ -50,12 +69,13 @@ export default function Notes({ notes, setNotes, showContent }) {
   };
 
   return (
-    <div className="w-[1100px] ml-32 mt-3 h-[400px] fixed overflow-auto">
-      <div className="flex flex-wrap m-3 p-5">
+    <div className="w-full mt-3 grid grid-flow-col">
+      <div className="flex flex-wrap justify-center p-5">
         {notes.map((note, index) => (
           <div
             key={index}
-            className={`w-[310px] h-[250px] py-2 px-5 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
+            className={`w-[320px] h-[250px] py-2 px-5 m-2 border border-gray-300 shadow-md rounded ${note.color}`}
+            style={{ backgroundColor: selectedColor }}
           >
             <div className="flex justify-end">
               <AiOutlineEdit
@@ -68,7 +88,7 @@ export default function Notes({ notes, setNotes, showContent }) {
               />
             </div>
 
-            {editingIndex === index ? (
+            {editChoice && editingIndex === index ? (
               <div>
                 <textarea
                   value={editContent}
@@ -78,16 +98,37 @@ export default function Notes({ notes, setNotes, showContent }) {
                   cols={30}
                 />
                 <button
+                  className="p-2 w-16  bg-green-500 rounded"
+                  onClick={handleColorButtonClick}
+                >
+                  Color
+                </button>
+                <button
                   onClick={() => handleUpdateNote(index)}
                   className="bg-sky-500 p-2 rounded mt-2 ml-2"
                 >
                   Update
                 </button>
+                <div className="w-[380px] scale-[.6] pr-2">
+                  {showColorOptions && (
+                    <Color onSelectColor={handleColorSelect} />
+                  )}
+                </div>
               </div>
             ) : (
               <div className="relative">
-                <div style={{ maxHeight: "150px", overflow: "hidden" }}>
-                  {note.content}
+                <div
+                  style={{
+                    maxHeight: "150px",
+                    overflow: "hidden",
+                    fontWeight: note.bold ? "bold" : "normal",
+                    fontStyle: note.italics ? "italic" : "normal",
+                    textDecoration: note.underline ? "underline" : "none",
+                  }}
+                >
+                  {note.content.split("\n").map((line, index) => (
+                    <div key={index}>{line}</div>
+                  ))}
                 </div>
                 {note.content.length > 500 && (
                   <div

@@ -11,7 +11,7 @@ export default function Color({ onSelectColor }) {
   ];
 
   return (
-    <div className="flex mt-4   pl-16">
+    <div className="flex mt-4 relative pl-16">
       {colors.map((color, index) => (
         <div
           key={index}

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import Color from "./Color";
 import { useState, useRef } from "react";
+import { FaUnderline, FaItalic, FaBold } from "react-icons/fa6";
+import { AiOutlinePlus } from "react-icons/ai";
 import useDrag from "./UseDrag";
 const Add = ({ onAddNote }) => {
   const { id } = useParams();
@@ -8,6 +10,11 @@ const Add = ({ onAddNote }) => {
   const [textareaContent, setTextareaContent] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [showColorOptions, setShowColorOptions] = useState(false);
+  const [formatingOptions, setFormatingOptions] = useState({
+    bold: false,
+    italics: false,
+    underline: false,
+  });
   const draggableRef = useRef(null);
 
   const { position, handleMouseDown } = useDrag({
@@ -17,9 +24,9 @@ const Add = ({ onAddNote }) => {
   const handelShowTextArea = () => {
     setShowTextarea((prevShowTextarea) => !prevShowTextarea);
   };
+
   const handelTextAreaContent = (e) => {
     setTextareaContent(e.target.value);
-    console.log(textareaContent);
   };
   const handleColorButtonClick = () => {
     setShowColorOptions((prevShowColorOptions) => !prevShowColorOptions);
@@ -30,6 +37,20 @@ const Add = ({ onAddNote }) => {
     setShowColorOptions(false);
   };
 
+  const handelBold = () => {
+    let bold = !formatingOptions.bold;
+    setFormatingOptions({ ...formatingOptions, bold: bold });
+  };
+
+  const handelItalics = () => {
+    let italics = !formatingOptions.italics;
+    setFormatingOptions({ ...formatingOptions, italics: italics });
+  };
+
+  const handelUnderline = () => {
+    let underline = !formatingOptions.underline;
+    setFormatingOptions({ ...formatingOptions, underline: underline });
+  };
   const handleAddNote = () => {
     if (textareaContent != "") {
       fetch("http://localhost:4000/Notes/" + id, {
@@ -38,6 +59,9 @@ const Add = ({ onAddNote }) => {
         body: JSON.stringify({
           content: textareaContent,
           color: selectedColor,
+          bold: formatingOptions.bold,
+          italics: formatingOptions.italics,
+          underline: formatingOptions.underline,
         }),
       })
         .then((res) => res.json())
@@ -69,13 +93,47 @@ const Add = ({ onAddNote }) => {
               left: position.x,
             }}
           >
+            <div className="flex justify-end w-[340px] mb-2">
+              <FaBold
+                className={`m-0.5 text-3xl cursor-pointer p-1 ${
+                  formatingOptions.bold
+                    ? "bg-purple-500"
+                    : "hover:bg-purple-500"
+                }  rounded-lg`}
+                onClick={handelBold}
+              />
+
+              <FaItalic
+                className={`m-0.5 text-3xl cursor-pointer p-1 ${
+                  formatingOptions.italics
+                    ? "bg-purple-500"
+                    : "hover:bg-purple-500"
+                }  rounded-lg`}
+                onClick={handelItalics}
+              />
+              <FaUnderline
+                className={`m-0.5 text-3xl cursor-pointer p-1 ${
+                  formatingOptions.underline
+                    ? "bg-purple-500"
+                    : "hover:bg-purple-500"
+                }  rounded-lg`}
+                onClick={handelUnderline}
+              />
+            </div>
             <textarea
               name=""
               id=""
               cols="30"
               rows="10"
-              className={`border ml-16 border-black p-4 ${selectedColor} resize-none whitespace-pre `}
-              style={{ backgroundColor: { selectedColor } }}
+              className={`border ml-16 border-black p-4 ${selectedColor} resize-none`}
+              style={{
+                backgroundColor: { selectedColor },
+                fontWeight: formatingOptions.bold ? "bold" : "normal",
+                fontStyle: formatingOptions.italics ? "italic" : "normal",
+                textDecoration: formatingOptions.underline
+                  ? "underline"
+                  : "none",
+              }}
               value={textareaContent}
               onChange={handelTextAreaContent}
             />

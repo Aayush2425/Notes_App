@@ -106,7 +106,7 @@ app.get("/Notes/:id", (req, res) => {
 
 app.post("/Notes/:id", async (req, res) => {
   const { id } = req.params;
-  const { content, color } = req.body;
+  const { content, color, bold, italics, underline } = req.body;
   try {
     await client.connect();
     console.log("Successfully connected to Atlas Notes");
@@ -120,6 +120,9 @@ app.post("/Notes/:id", async (req, res) => {
     let Notes = {
       content: content,
       color: color,
+      bold: bold,
+      italics: italics,
+      underline: underline,
     };
     // console.log(Notes);
     // console.log("Filter :", filter);
@@ -170,7 +173,7 @@ app.delete("/Notes/:id", async (req, res) => {
 
 app.put("/Notes/:id", async (req, res) => {
   const { id } = req.params;
-  const { content, index } = req.body;
+  const { content, index, color } = req.body;
   try {
     await client.connect();
     console.log("Successfully connected to Atlas update");
@@ -180,12 +183,13 @@ app.put("/Notes/:id", async (req, res) => {
     console.log("Filter :", filter);
     const document = await col.findOne(filter);
     console.log(document);
+    console.log("color", color);
     if (document) {
       const updateValue = { $set: {} };
       // console.log("Notes = ", document.Notes[index].color);
       updateValue["$set"]["Notes." + index] = {
         content: content,
-        color: document.Notes[index].color,
+        color: color,
       };
       await col.updateOne(filter, updateValue);
       const pa = await col.findOne(filter);
