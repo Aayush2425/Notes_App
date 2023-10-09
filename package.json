@@ -1,20 +1,29 @@
 {
-  "name": "notes_app",
-  "description": "",
+  "name": "notes-backend",
   "version": "1.0.0",
-  "main": "server.js",
   "type": "module",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.17.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.0",
-    "nodemon": "^2.0.15"
-  },
+  "description": "",
+  "main": "script.js",
   "scripts": {
+    "dev": "nodemon NotesBackend/server.js",
+    "start": "node NotesBackend/server.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongod": "^2.0.0",
+    "mongodb": "^6.0.0",
+    "mongoose": "^7.5.2"
+  }
 }
