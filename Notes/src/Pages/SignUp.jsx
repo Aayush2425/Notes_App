@@ -28,7 +28,7 @@ const SignUp = () => {
       formErrors.email === "valid" &&
       formErrors.confirmPassword === "valid"
     ) {
-      fetch("http://localhost:4000/SignUp", {
+      fetch("http://localhost:4000/SignUps", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -40,7 +40,7 @@ const SignUp = () => {
         .then(async (res) => res.json())
         .then(async (res) => {
           console.log(res.id);
-          navigate("/Notes/" + res.id);
+          navigate("/notes/" + res.id);
         });
     }
   }, [formErrors]);

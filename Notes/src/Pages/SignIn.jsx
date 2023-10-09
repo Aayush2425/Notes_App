@@ -22,7 +22,7 @@ const SignIn = () => {
       .then(async (res) => {
         // console.log(res);
 
-        navigate("/Notes/" + res._id);
+        navigate("/notes/" + res._id);
       });
     e.preventDefault();
   };

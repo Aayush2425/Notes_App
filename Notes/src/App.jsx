@@ -17,7 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Notes/:id" element={<Notes />} />
+            <Route path="/notes/:id" element={<Notes />} />
           </Routes>
         </BrowserRouter>
       </div>
