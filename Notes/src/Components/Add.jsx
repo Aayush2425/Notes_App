@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Color from "./Color";
 import { useState, useRef } from "react";
 import { FaUnderline, FaItalic, FaBold } from "react-icons/fa6";
-// import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import useDrag from "./UseDrag";
 const Add = ({ onAddNote }) => {
   const { id } = useParams();

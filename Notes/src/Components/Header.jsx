@@ -55,7 +55,7 @@ export default function Header(props) {
             </button>
             <button
               className="bg-purple-600 rounded text-2xl m-2 p-2 w-60"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/Notes_App/")}
             >
               Yes
             </button>
