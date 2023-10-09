@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon NotesBackend/server.js",
     "start": "node NotesBackend/server.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "build": "npm install && npm install --prefix Notes && npm run build --prefix Notes"
   },
   "keywords": [],
   "author": "",
