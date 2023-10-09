@@ -13,16 +13,16 @@ const SignIn = () => {
   };
 
   const onSubmitSignIn = (e) => {
-    fetch("http://localhost:4000", {
+    fetch("http://localhost:4000/SignIn", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: signInEmail, password: signInPassword }),
     })
       .then(async (res) => res.json())
       .then(async (res) => {
-        if (res.message === "success") {
-          navigate("/Notes/" + res.id);
-        }
+        // console.log(res);
+
+        navigate("/Notes_App/Notes/" + res._id);
       });
     e.preventDefault();
   };
@@ -39,7 +39,10 @@ const SignIn = () => {
         </h1>
         <div className="flex justify-center  mb-4">
           <h3>Don't have an Account?</h3>
-          <Link to="/SignUp" className="text-purple-950 ml-2 underline">
+          <Link
+            to="/Notes_App/SignUp"
+            className="text-purple-950 ml-2 underline"
+          >
             Sign Up
           </Link>
         </div>

@@ -39,7 +39,8 @@ const SignUp = () => {
       })
         .then(async (res) => res.json())
         .then(async (res) => {
-          navigate("/Notes/" + res.id);
+          console.log(res.id);
+          navigate("/Notes_App/Notes/" + res.id);
         });
     }
   }, [formErrors]);
@@ -100,7 +101,7 @@ const SignUp = () => {
         <div className="flex justify-center mb-4">
           <h3>Already have an Account?</h3>
           <Link
-            to="/"
+            to="/Notes_App/"
             className="text-purple-950 ml-2 underline hover:text-purple-900"
           >
             Sign In

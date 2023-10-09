@@ -13,13 +13,13 @@ export default function App() {
   return (
     <>
       <div className="w-full ">
-        <HashRouter>
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Notes/:id" element={<Notes />} />
+            <Route path="/Notes_App/" element={<SignIn />} />
+            <Route path="/Notes_App/SignUp" element={<SignUp />} />
+            <Route path="/Notes_App/Notes/:id" element={<Notes />} />
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     </>
   );
