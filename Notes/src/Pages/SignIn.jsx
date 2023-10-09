@@ -22,7 +22,7 @@ const SignIn = () => {
       .then(async (res) => {
         // console.log(res);
 
-        navigate("/Notes_App/Notes/" + res._id);
+        navigate("/Notes/" + res._id);
       });
     e.preventDefault();
   };
@@ -39,10 +39,7 @@ const SignIn = () => {
         </h1>
         <div className="flex justify-center  mb-4">
           <h3>Don't have an Account?</h3>
-          <Link
-            to="/Notes_App/SignUp"
-            className="text-purple-950 ml-2 underline"
-          >
+          <Link to="/SignUp" className="text-purple-950 ml-2 underline">
             Sign Up
           </Link>
         </div>

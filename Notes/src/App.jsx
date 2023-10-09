@@ -15,9 +15,9 @@ export default function App() {
       <div className="w-full ">
         <BrowserRouter>
           <Routes>
-            <Route path="/Notes_App/" element={<SignIn />} />
-            <Route path="/Notes_App/SignUp" element={<SignUp />} />
-            <Route path="/Notes_App/Notes/:id" element={<Notes />} />
+            <Route path="/" element={<SignIn />} />
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/Notes/:id" element={<Notes />} />
           </Routes>
         </BrowserRouter>
       </div>
