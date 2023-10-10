@@ -21,7 +21,7 @@ const Notes = () => {
         setNotes(res.Notes);
         setLoading(false);
       });
-  }, []);
+  }, [notes]);
 
   // console.log(notes);
   const onHandelAddNote = (content) => {
