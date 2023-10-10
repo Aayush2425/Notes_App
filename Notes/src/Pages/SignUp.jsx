@@ -158,7 +158,7 @@ const SignUp = () => {
         >
           Need help?
         </a>
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-2">
           <button
             className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 "
             onClick={onSubmitSignUp}

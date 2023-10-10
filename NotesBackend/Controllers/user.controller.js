@@ -2,7 +2,7 @@ import User from "../Models/user.model.js";
 export const getNotes = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const user = await User.findById(id).populate("Notes");
+    const user = await User.findById(id);
     res.status(200).json(user);
   } catch (error) {
     next(error);
