@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { BiErrorCircle } from "react-icons/bi";
+import { Oauth } from "../Components/Oauth";
 const SignUp = () => {
   const [signUpForm, setForm] = useState({
     userName: "",
@@ -164,6 +165,12 @@ const SignUp = () => {
           >
             Create Account
           </button>
+        </div>
+        <div className="flex justify-center mb-2">
+          <h3>OR</h3>
+        </div>
+        <div className="flex justify-center mb-5">
+          <Oauth />
         </div>
       </form>
     </div>

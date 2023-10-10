@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Oauth } from "../Components/Oauth";
 const SignIn = () => {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -62,13 +63,19 @@ const SignIn = () => {
         >
           Need help?
         </a>
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-2">
           <button
             className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 "
             onClick={onSubmitSignIn}
           >
             Sign In
           </button>
+        </div>
+        <div className="flex justify-center mb-2">
+          <h3>OR</h3>
+        </div>
+        <div className="flex justify-center mb-5">
+          <Oauth />
         </div>
       </form>
       <Outlet />
