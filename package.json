@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon NotesBackend/server.js",
     "start": "node NotesBackend/server.js",
