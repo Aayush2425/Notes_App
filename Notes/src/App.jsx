@@ -1,5 +1,6 @@
-import Header from "./Components/Header";
+// import Header from "../Components/Notes_Components/Header";
 import Notes from "./Pages/Notes";
+import Dashboard from "./Pages/Dashboard";
 import {
   BrowserRouter,
   Route,
@@ -17,6 +18,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/dashboard/:id" element={<Dashboard />} />
             <Route path="/notes/:id" element={<Notes />} />
           </Routes>
         </BrowserRouter>

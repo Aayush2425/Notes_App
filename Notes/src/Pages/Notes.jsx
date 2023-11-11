@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Add from "../Components/Add";
-import FullContent from "../Components/FullContent";
-import NoteApp from "../Components/NoteApp";
-import Loading from "../Components/Loading";
-import Header from "../Components/Header";
+import Add from "../Components/Notes_Components/Add";
+import FullContent from "../Components/Notes_Components/FullContent";
+import NoteApp from "../Components/Notes_Components/NoteApp";
+import Loading from "../Components/Notes_Components/Loading";
+// import Header from "../Components/Notes_Components/Header";
+import Layout from "../Components/Dashboard Components/Layout";
 import { useParams } from "react-router-dom";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -34,7 +35,7 @@ const Notes = () => {
   return (
     <>
       {loading && <Loading />}
-      <Header Name={Name} />
+      <Layout Name={Name} id={id} />
       <div>
         <Add onAddNote={onHandelAddNote} />
 

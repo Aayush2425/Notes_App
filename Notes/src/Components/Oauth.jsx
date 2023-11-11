@@ -21,7 +21,7 @@ export const Oauth = () => {
         }),
       })
         .then((res) => res.json())
-        .then((res) => nav("/notes/" + res._id));
+        .then((res) => nav("/dashboard/" + res._id));
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +29,7 @@ export const Oauth = () => {
   return (
     <button
       type="button"
-      className="rounded bg-purple-500 p-2 flex justify-center hover:bg-purple-400 duration-500 text-xl w-72 "
+      className="rounded bg-blue-500 p-2 flex justify-center hover:bg-blue-400 duration-500 text-xl w-72 "
       onClick={handelGoogleClick}
     >
       Continue with <FcGoogle className="ml-2 mt-1" />

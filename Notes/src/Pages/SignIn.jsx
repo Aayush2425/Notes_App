@@ -23,7 +23,7 @@ const SignIn = () => {
       .then(async (res) => {
         // console.log(res);
 
-        navigate("/notes/" + res._id);
+        navigate("/dashboard/" + res._id);
       });
     e.preventDefault();
   };
@@ -33,7 +33,7 @@ const SignIn = () => {
       <form
         action=""
         method="post"
-        className="grid grid-flow-row bg-purple-600 w-96 rounded-md xl:scale-125 2xl:scale-150"
+        className="grid grid-flow-row bg-blue-600 w-96 rounded-md xl:scale-125 2xl:scale-150"
       >
         <h1 className="text-2xl text-center font-medium mt-6  mb-4">
           Sign In{" "}
@@ -59,13 +59,13 @@ const SignIn = () => {
         />
         <a
           href="#"
-          className="flex justify-end mr-5 text-lg text-purple-950 mb-3 underline"
+          className="flex justify-end mr-5 text-lg text-blue-950 mb-3 underline"
         >
           Need help?
         </a>
         <div className="flex justify-center mb-2">
           <button
-            className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 "
+            className=" rounded bg-blue-500 p-2 hover:blue-400 duration-500 text-xl w-72 "
             onClick={onSubmitSignIn}
           >
             Sign In

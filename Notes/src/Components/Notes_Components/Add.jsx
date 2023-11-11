@@ -3,7 +3,7 @@ import Color from "./Color";
 import { useState, useRef } from "react";
 import { FaUnderline, FaItalic, FaBold } from "react-icons/fa6";
 import { AiOutlinePlus } from "react-icons/ai";
-import useDrag from "./UseDrag";
+import useDrag from "../UseDrag";
 const Add = ({ onAddNote }) => {
   const { id } = useParams();
   const [showTextarea, setShowTextarea] = useState(false);
@@ -78,7 +78,7 @@ const Add = ({ onAddNote }) => {
     <div>
       <div className="flex justify-center">
         <div
-          className="border border-purple-800 bg-purple-600 rounded-full w-11 h-11  mt-12 mb-12 text-3xl hover:rotate-90 duration-700 cursor-pointer text-center hover:scale-110"
+          className="border border-gray-800 bg-gray-600 rounded-full w-11 h-11  mt-12 mb-12 text-3xl hover:rotate-90 duration-700 cursor-pointer text-center hover:scale-110"
           onClick={handelShowTextArea}
         >
           +
@@ -95,27 +95,23 @@ const Add = ({ onAddNote }) => {
           >
             <div className="flex justify-end w-[340px] mb-2">
               <FaBold
-                className={`m-0.5 text-3xl cursor-pointer p-1 ${
-                  formatingOptions.bold
-                    ? "bg-purple-500"
-                    : "hover:bg-purple-500"
+                className={`m-0.5 text-3xl cursor-pointer p-1 text-white ${
+                  formatingOptions.bold ? "bg-gray-500" : "hover:bg-gray-500"
                 }  rounded-lg`}
                 onClick={handelBold}
               />
 
               <FaItalic
-                className={`m-0.5 text-3xl cursor-pointer p-1 ${
-                  formatingOptions.italics
-                    ? "bg-purple-500"
-                    : "hover:bg-purple-500"
+                className={`m-0.5 text-3xl cursor-pointer p-1 text-white ${
+                  formatingOptions.italics ? "bg-gray-500" : "hover:bg-gray-500"
                 }  rounded-lg`}
                 onClick={handelItalics}
               />
               <FaUnderline
-                className={`m-0.5 text-3xl cursor-pointer p-1 ${
+                className={`m-0.5 text-3xl cursor-pointer p-1 text-white ${
                   formatingOptions.underline
-                    ? "bg-purple-500"
-                    : "hover:bg-purple-500"
+                    ? "bg-gray-500"
+                    : "hover:bg-gray-500"
                 }  rounded-lg`}
                 onClick={handelUnderline}
               />

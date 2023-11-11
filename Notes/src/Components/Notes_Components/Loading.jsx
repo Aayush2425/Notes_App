@@ -2,7 +2,7 @@ import { BsDot } from "react-icons/bs";
 import { PacmanLoader } from "react-spinners";
 const Loading = () => {
   return (
-    <div className="flex justify-center backdrop-blur-3xl absolute z-50 items-center h-[100vh] w-full ">
+    <div className="flex justify-center backdrop-blur-3xl absolute z-50 items-center h-[100vh] w-full text-white ">
       <div className=" text-4xl font-bold animate-bounce-slow pt-5 ">L</div>
       <div className=" text-4xl font-bold animate-bounce-medium pt-5 ">o</div>
       <div className=" text-4xl font-bold animate-bounce-fast pt-5 ">a</div>

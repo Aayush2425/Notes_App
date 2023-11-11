@@ -12,7 +12,7 @@ export default function Header(props) {
   };
   return (
     <div className=" pt-8 grid w-full">
-      <div className="text-3xl col-start-2 font-bold">Notes</div>
+      <div className="text-3xl col-start-2 text-white font-bold">Notes</div>
       <div className="text-3xl col-start-11 font-bold">
         <img
           src="/profile.png"
@@ -23,8 +23,8 @@ export default function Header(props) {
       </div>
 
       {profile && (
-        <div className=" right-48 absolute h-56 w-48 rounded-md  bg-purple-500">
-          <div className="flex justify-center text-2xl p-2 border-b-2 border-purple-700">
+        <div className=" right-48 absolute h-56 w-48 rounded-md  bg-gray-500">
+          <div className="flex justify-center text-2xl p-2 border-b-2 border-gray-700">
             <h1>{props.Name}</h1>
           </div>
           <div className="flex justify-center text-2xl p-2">

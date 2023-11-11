@@ -41,7 +41,7 @@ const SignUp = () => {
         .then(async (res) => res.json())
         .then(async (res) => {
           console.log(res.id);
-          navigate("/notes/" + res.id);
+          navigate("/dashboard/" + res.id);
         });
     }
   }, [formErrors]);
@@ -94,7 +94,7 @@ const SignUp = () => {
       <form
         action=""
         method="post"
-        className="grid grid-flow-row bg-purple-600 w-96 rounded-md xl:scale-110 2xl:scale-125  "
+        className="grid grid-flow-row bg-blue-600 w-96 rounded-md xl:scale-110 2xl:scale-125  "
       >
         <h1 className="text-2xl text-center font-medium mt-6  mb-4">
           Create new Account{" "}
@@ -103,7 +103,7 @@ const SignUp = () => {
           <h3>Already have an Account?</h3>
           <Link
             to="/"
-            className="text-purple-950 ml-2 underline hover:text-purple-900"
+            className="text-blue-950 ml-2 underline hover:text-blue-900"
           >
             Sign In
           </Link>
@@ -154,13 +154,13 @@ const SignUp = () => {
         </div>
         <a
           href="#"
-          className="flex justify-end mr-5 text-lg text-purple-950 mb-3 underline hover:text-purple-900"
+          className="flex justify-end mr-5 text-lg text-blue-950 mb-3 underline hover:text-blue-900"
         >
           Need help?
         </a>
         <div className="flex justify-center mb-2">
           <button
-            className=" rounded bg-purple-500 p-2 hover:bg-purple-400 duration-500 text-xl w-72 "
+            className=" rounded bg-blue-500 p-2 hover:bg-blue-400 duration-500 text-xl w-72 "
             onClick={onSubmitSignUp}
           >
             Create Account

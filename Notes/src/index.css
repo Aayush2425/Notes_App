@@ -7,13 +7,14 @@
   
 /* Track */
 ::-webkit-scrollbar-track { 
-    background:rgb(168 85 247); 
+    background-color: rgb(75 85 99 / 1); 
+    border-radius: .375rem;
 } 
   
 /* Handle */
 ::-webkit-scrollbar-thumb { 
-    background: blueviolet; 
-    border-radius: 1px; 
+    background: rgb(31 41 55 /1); 
+    border-radius: .375rem; 
 } 
   
 /* Handle on hover */
