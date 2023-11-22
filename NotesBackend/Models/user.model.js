@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema(
         underline: { type: Boolean, default: false },
       },
     ],
+    Block: [
+      {
+        type: { type: String, required: true },
+        content: { type: String, required: true },
+      },
+    ],
   },
   { timestamps: true }
 );

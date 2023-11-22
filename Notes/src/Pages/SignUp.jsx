@@ -94,7 +94,7 @@ const SignUp = () => {
       <form
         action=""
         method="post"
-        className="grid grid-flow-row bg-blue-600 w-96 rounded-md xl:scale-110 2xl:scale-125  "
+        className="grid grid-flow-row bg-[#202e74] w-96 rounded-md xl:scale-110 2xl:scale-125  "
       >
         <h1 className="text-2xl text-center font-medium mt-6  mb-4">
           Create new Account{" "}
@@ -103,7 +103,7 @@ const SignUp = () => {
           <h3>Already have an Account?</h3>
           <Link
             to="/"
-            className="text-blue-950 ml-2 underline hover:text-blue-900"
+            className="text-cyan-500 ml-2 underline hover:text-cyan-600"
           >
             Sign In
           </Link>
@@ -154,7 +154,7 @@ const SignUp = () => {
         </div>
         <a
           href="#"
-          className="flex justify-end mr-5 text-lg text-blue-950 mb-3 underline hover:text-blue-900"
+          className="flex justify-end mr-5 text-lg mb-3 underline hover:text-gray-800"
         >
           Need help?
         </a>

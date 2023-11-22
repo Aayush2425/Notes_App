@@ -25,8 +25,15 @@ const featureSlice = createSlice({
     toggleTo_do: (state) => {
       state.to_do = !state.to_do;
     },
+    resetState: () => initialState,
   },
 });
-export const { toggleH1, toggleH2, toggleH3, toggleTable, toggleTo_do } =
-  featureSlice.actions;
+export const {
+  toggleH1,
+  toggleH2,
+  toggleH3,
+  toggleTable,
+  toggleTo_do,
+  resetState,
+} = featureSlice.actions;
 export default featureSlice.reducer;

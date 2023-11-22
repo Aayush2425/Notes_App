@@ -54,3 +54,18 @@ export const updateNotes = async (req, res, next) => {
     next(error);
   }
 };
+
+export const addBlock = async (req, res, next) => {
+  const { id } = req.params;
+  const { type, content } = req.body;
+  try {
+    const addHeading1 = await User.findByIdAndUpdate(
+      id,
+      { $push: { Block: { type, content: content } } },
+      { new: true }
+    );
+    res.status(200).json(addHeading1);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -11,7 +11,7 @@ import {
 const Dropdown = () => {
   const dispatch = useDispatch();
   //   const { h1, h2, h3, table, to_do } = useSelector((state) => state.feature);
-  const handleFeature = (e, index) => {
+  const handleFeature = (e, index, val) => {
     console.log(index);
     if (index === 0) {
       dispatch(toggleH1());
@@ -29,8 +29,8 @@ const Dropdown = () => {
     return (
       <div
         className="h-14 text-white p-2 cursor-pointer hover:rounded-sm hover:bg-gray-800"
-        key={command.id}
-        onClick={(e) => handleFeature(e, index)}
+        key={command.type}
+        onClick={(e) => handleFeature(e, index, command.type)}
       >
         <div>
           {command.name}
@@ -42,7 +42,7 @@ const Dropdown = () => {
     );
   });
   return (
-    <div className="w-52 h-[300px] overflow-auto text-white rounded-md bg-gray-700 p-2">
+    <div className="w-56 h-[300px] overflow-auto text-white rounded-md bg-gray-700 p-2">
       {dropdown}
     </div>
   );

@@ -5,17 +5,17 @@ import { AiFillHome } from "react-icons/ai";
 export default function Layout(props) {
   const [profile, setProfile] = useState(false);
   const [logOut, setLogOut] = useState(false);
-  const [activelink, setActiveLink] = useState({ home: false, notes: false });
+  const [activelink, setActiveLink] = useState({ home: true, notes: true });
   const navigate = useNavigate();
   const showProfile = () => {
     console.log("clicked");
     setProfile((prevPofile) => !prevPofile);
   };
   const handelHome = () => {
-    setActiveLink({ home: true, notes: false });
+    setActiveLink({ ...activelink, notes: false });
   };
   const handelNotes = () => {
-    setActiveLink({ notes: true, home: false });
+    setActiveLink({ ...activelink, home: false });
   };
 
   return (
