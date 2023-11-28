@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { resetState, toggleH1 } from "../../Redux/Features/FeatureSlice";
+import { toggleH1 } from "../../Redux/Features/FeatureSlice";
 import { useDispatch } from "react-redux";
 // import { resetState } from "../../Redux/Features/action.js";
 const Header_H1 = ({ onAddH1 }) => {
@@ -12,7 +12,6 @@ const Header_H1 = ({ onAddH1 }) => {
     e.preventDefault();
 
     setH1Value({ type: "h1", content: e.target.value });
-    // setInput("");
   };
   const handleAddH1 = () => {
     if (h1Value != "") {

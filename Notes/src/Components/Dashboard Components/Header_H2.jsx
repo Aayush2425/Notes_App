@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { resetState, toggleH2 } from "../../Redux/Features/FeatureSlice";
+import { toggleH2 } from "../../Redux/Features/FeatureSlice";
 import { useDispatch } from "react-redux";
 // import { resetState } from "../../Redux/Features/action.js";
 const Header_H2 = ({ onAddH2 }) => {

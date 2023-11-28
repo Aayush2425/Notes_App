@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     Block: [
       {
         type: { type: String, required: true },
-        content: { type: String, required: true },
+        content: { type: Object, required: true },
       },
     ],
   },
