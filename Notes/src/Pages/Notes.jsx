@@ -17,7 +17,6 @@ const Notes = () => {
     fetch("http://localhost:4000/Notes/" + id)
       .then((res) => res.json())
       .then((res) => {
-        console.log("hello = ", res);
         Username(res.name);
         setNotes(res.Notes);
         setLoading(false);

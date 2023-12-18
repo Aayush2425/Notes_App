@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     Block: [
       {
         type: { type: String, required: true },
-        content: { type: Object, required: true },
+        content: { data: { type: mongoose.Schema.Types.Mixed } },
       },
     ],
   },

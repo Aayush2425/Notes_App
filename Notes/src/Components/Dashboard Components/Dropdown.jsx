@@ -7,6 +7,7 @@ import {
   toggleH3,
   toggleTable,
   toggleTo_do,
+  toggleBulleted_List,
 } from "../../Redux/Features/FeatureSlice";
 const Dropdown = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const Dropdown = () => {
       dispatch(toggleTable());
     } else if (index === 4) {
       dispatch(toggleTo_do());
+    } else if (index === 5) {
+      dispatch(toggleBulleted_List());
     }
   };
   const dropdown = Commands.map((command, index) => {

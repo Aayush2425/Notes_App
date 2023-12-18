@@ -11,7 +11,7 @@ const Header_H1 = ({ onAddH1 }) => {
   const handleH1 = (e) => {
     e.preventDefault();
 
-    setH1Value({ type: "h1", content: e.target.value });
+    setH1Value({ type: "h1", content: { data: e.target.value } });
   };
   const handleAddH1 = () => {
     if (h1Value != "") {

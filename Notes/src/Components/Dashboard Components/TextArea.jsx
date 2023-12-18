@@ -5,9 +5,7 @@ import { useParams } from "react-router-dom";
 import Header_H1 from "./Header_H1";
 import Header_H2 from "./Header_H2";
 import Header_H3 from "./Header_H3";
-import Table from "./Table";
-import To_Do from "./To_Do";
-import To_DoList from "./To_DoList";
+import Bullet_List from "./Bullet_List";
 const TextArea = () => {
   const [input, setInput] = useState("");
   const [block, setBlock] = useState([]);
@@ -47,19 +45,19 @@ const TextArea = () => {
       case "h1":
         return (
           <div className="px-5 py-2">
-            <div className="text-white text-4xl">{block.content}</div>
+            <div className="text-white text-4xl">{block.content.data}</div>
           </div>
         );
       case "h2":
         return (
           <div className="px-5 py-2">
-            <div className="text-white text-3xl">{block.content}</div>
+            <div className="text-white text-3xl">{block.content.data}</div>
           </div>
         );
       case "h3":
         return (
           <div className="px-5 py-2">
-            <div className="text-white text-2xl">{block.content}</div>
+            <div className="text-white text-2xl">{block.content.data}</div>
           </div>
         );
       case "table":
@@ -69,17 +67,9 @@ const TextArea = () => {
           </div>
         );
       case "to-do":
-        return (
-          <div className="px-5 py-2">
-            <div className="text-white text-2xl">
-              <div className="mb-3 px-5">
-                {block.content.todos.map((todo) => (
-                  <To_Do key={todo.id} todo={todo} />
-                ))}
-              </div>
-            </div>
-          </div>
-        );
+        return <div>Hello</div>;
+      case "bullet-List":
+        return <div className="px-5 py-2">Hello</div>;
       default:
         break;
     }
@@ -92,8 +82,9 @@ const TextArea = () => {
       {feature.h1 && <Header_H1 onAddH1={handleAddBlock} />}
       {feature.h2 && <Header_H2 onAddH2={handleAddBlock} />}
       {feature.h3 && <Header_H3 onAddH3={handleAddBlock} />}
-      {feature.table && <Table onAddTable={handleAddBlock} />}
-      {feature.to_do && <To_DoList onAddToDo={handleAddBlock} />}
+      {feature.bulleted_list && (
+        <Bullet_List onAddBulletList={handleAddBlock} />
+      )}
 
       <div className="mb-3 px-5">
         <input

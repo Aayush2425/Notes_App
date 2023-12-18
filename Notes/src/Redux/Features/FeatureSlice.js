@@ -5,6 +5,7 @@ const initialState = {
   h3: false,
   table: false,
   to_do: false,
+  bulleted_list: false,
 };
 const featureSlice = createSlice({
   name: "feature",
@@ -25,6 +26,9 @@ const featureSlice = createSlice({
     toggleTo_do: (state) => {
       state.to_do = !state.to_do;
     },
+    toggleBulleted_List: (state) => {
+      state.bulleted_list = !state.bulleted_list;
+    },
     resetState: () => initialState,
   },
 });
@@ -34,6 +38,7 @@ export const {
   toggleH3,
   toggleTable,
   toggleTo_do,
+  toggleBulleted_List,
   resetState,
 } = featureSlice.actions;
 export default featureSlice.reducer;

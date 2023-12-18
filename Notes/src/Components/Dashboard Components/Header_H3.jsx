@@ -11,7 +11,7 @@ const Header_H3 = ({ onAddH3 }) => {
   const handleH3 = (e) => {
     e.preventDefault();
 
-    setH3Value({ type: "h3", content: e.target.value });
+    setH3Value({ type: "h3", content: { data: e.target.value } });
     // setInput("");
   };
   const handleAddH3 = () => {
