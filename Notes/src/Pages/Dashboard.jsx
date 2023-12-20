@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../Components/Notes_Components/Loading";
 import TextArea from "../Components/Dashboard Components/TextArea";
+import Background from "../Components/framerComponents/background";
 // import Sidebar from "../Components/Dashboard Components/Sidebar";
 const Dashboard = () => {
   const { id } = useParams();

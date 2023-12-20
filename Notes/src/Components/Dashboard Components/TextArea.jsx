@@ -75,26 +75,28 @@ const TextArea = () => {
     }
   };
   return (
-    <div className="w-full px-20 py-5">
-      {block.map((blocks, index) => (
-        <div key={index}>{renderBlock(blocks)}</div>
-      ))}
-      {feature.h1 && <Header_H1 onAddH1={handleAddBlock} />}
-      {feature.h2 && <Header_H2 onAddH2={handleAddBlock} />}
-      {feature.h3 && <Header_H3 onAddH3={handleAddBlock} />}
-      {feature.bulleted_list && (
-        <Bullet_List onAddBulletList={handleAddBlock} />
-      )}
+    <div>
+      <div className="w-full px-20 py-5">
+        {block.map((blocks, index) => (
+          <div key={index}>{renderBlock(blocks)}</div>
+        ))}
+        {feature.h1 && <Header_H1 onAddH1={handleAddBlock} />}
+        {feature.h2 && <Header_H2 onAddH2={handleAddBlock} />}
+        {feature.h3 && <Header_H3 onAddH3={handleAddBlock} />}
+        {feature.bulleted_list && (
+          <Bullet_List onAddBulletList={handleAddBlock} />
+        )}
 
-      <div className="mb-3 px-5">
-        <input
-          className="w-full bg-gray-900 h-10 text-white text-xl outline-none"
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Type '/' for commands"
-        />
-        {isDropDown && !feature.h1 && <Dropdown />}
+        <div className="mb-3 px-5">
+          <input
+            className="w-full bg-gray-900 h-10 text-white text-xl outline-none"
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Type '/' for commands"
+          />
+          {isDropDown && !feature.h1 && <Dropdown />}
+        </div>
       </div>
     </div>
   );

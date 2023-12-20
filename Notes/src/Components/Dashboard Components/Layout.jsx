@@ -3,6 +3,8 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate, Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import Profile from "./Profile";
+import Background from "../framerComponents/background";
+import ParticleAnimation from "../framerComponents/ParticleAnimation";
 export default function Layout(props) {
   const [profile, setProfile] = useState(false);
   const [updateProfile, setUpdateProfile] = useState(false);
