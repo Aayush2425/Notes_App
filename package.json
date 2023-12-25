@@ -6,8 +6,7 @@
   "main": "NotesBackend/server.js",
   "scripts": {
     "dev": "nodemon NotesBackend/server.js",
-    "start": "node NotesBackend/server.js",
-    "build": "npm install && npm install --prefix Notes && npm run build --prefix Notes"
+    "start": "node NotesBackend/server.js"
   },
   "keywords": [],
   "author": "",
