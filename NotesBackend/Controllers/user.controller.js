@@ -69,3 +69,35 @@ export const addBlock = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteBlock = async (req, res, next) => {
+  const { id } = req.params;
+  const { index } = req.body;
+  try {
+    const deleteBlock = await User.findByIdAndUpdate(
+      id,
+      { $unset: { [`Block.${index}`]: "1" } },
+      { new: true }
+    );
+    await User.findByIdAndUpdate(id, { $pull: { Block: null } }, { new: true });
+    res.status(200).json(deleteBlock);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateBlock = async (req, res, next) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  try {
+    const updateBlock = User.findByIdAndUpdate(
+      id,
+      id,
+      { $set: { [`Block.${index}`]: { content } } },
+      { new: true }
+    );
+    res.status(200).json(updateBlock);
+  } catch (error) {
+    next(error);
+  }
+};
