@@ -9,7 +9,7 @@ export const SignUp = async (req, res, next) => {
   const newUser = new User({ email, name, password: hashPassword });
   try {
     await newUser.save();
-    res.status(201).json({ id: newUser._id });
+    res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
@@ -28,10 +28,8 @@ export const SignIn = async (req, res, next) => {
     }
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validUser._doc;
-    res
-      .cookie("access token", token, { httpOnly: true })
-      .status(200)
-      .json(rest);
+    res.cookie("aayush", token);
+    res.status(200).json(rest);
   } catch (error) {
     next(error);
   }

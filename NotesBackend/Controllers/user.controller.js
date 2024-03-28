@@ -11,11 +11,11 @@ export const getNotes = async (req, res, next) => {
 
 export const addNotes = async (req, res, next) => {
   const { id } = req.params;
-  const { content, color, bold, italics, underline } = req.body;
+  const { title, content, color, bold, italics, underline } = req.body;
   try {
     const addNotes = await User.findByIdAndUpdate(
       id,
-      { $push: { Notes: { content, color, bold, italics, underline } } },
+      { $push: { Notes: { title, content, color, bold, italics, underline } } },
       { new: true }
     );
     res.status(200).json(addNotes);
@@ -42,11 +42,15 @@ export const deleteNotes = async (req, res, next) => {
 
 export const updateNotes = async (req, res, next) => {
   const { id } = req.params;
-  const { content, index, color } = req.body;
+  const { title, content, index, color, password, isProtected } = req.body;
   try {
     const updateNotes = await User.findByIdAndUpdate(
       id,
-      { $set: { [`Notes.${index}`]: { content, color } } },
+      {
+        $set: {
+          [`Notes.${index}`]: { title, content, color, password, isProtected },
+        },
+      },
       { new: true }
     );
     res.status(200).json(updateNotes);
@@ -69,3 +73,36 @@ export const addBlock = async (req, res, next) => {
     next(error);
   }
 };
+export const deleteBlock = async (req, res, next) => {
+  const { id } = req.params;
+  const { index } = req.body;
+  try {
+    const deleteBlock = await User.findByIdAndUpdate(
+      id,
+      { $unset: { [`Block.${index}`]: "1" } },
+      { new: true }
+    );
+    await User.findByIdAndUpdate(id, { $pull: { Block: null } }, { new: true });
+    res.status(200).json(deleteBlock);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateBlock = async (req, res, next) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  try {
+    const updateBlock = User.findByIdAndUpdate(
+      id,
+      id,
+      { $set: { [`Block.${index}`]: { content } } },
+      { new: true }
+    );
+    res.status(200).json(updateBlock);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const addTodo = async (req, res, next) => {};

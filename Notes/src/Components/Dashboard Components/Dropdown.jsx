@@ -31,7 +31,7 @@ const Dropdown = () => {
   const dropdown = Commands.map((command, index) => {
     return (
       <div
-        className="h-14 text-white p-2 cursor-pointer hover:rounded-sm hover:bg-gray-800"
+        className="h-14 p-2 cursor-pointer hover:rounded-sm "
         key={command.type}
         onClick={(e) => handleFeature(e, index, command.type)}
       >
@@ -45,7 +45,7 @@ const Dropdown = () => {
     );
   });
   return (
-    <div className="w-56 h-[300px] overflow-auto text-white rounded-md bg-gray-700 p-2">
+    <div className="w-56 h-[300px] overflow-auto rounded-md  p-2">
       {dropdown}
     </div>
   );

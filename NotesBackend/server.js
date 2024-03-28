@@ -6,9 +6,11 @@ import SignUpRouter from "./Routes/auth.route.js";
 import UserRouter from "./Routes/user.route.js";
 import mongoose from "mongoose";
 import path from "path";
+import cookieParser from "cookie-parser";
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use(cookieParser());
 // app.use((req, res, next) => {
 //   res.header("Cross-Origin-Opener-Policy", "same-origin");
 //   next();
@@ -31,10 +33,6 @@ app.use(SignUpRouter);
 
 app.use(UserRouter);
 
-app.use(express.static(path.join(__dirname, "/Notes/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "Notes", "dist", "index.html"));
-});
 app.use((error, req, res, next) => {
   const statusCode = error.statusCode || 500;
   const errorMessage = error.message || "Internal Server Error";

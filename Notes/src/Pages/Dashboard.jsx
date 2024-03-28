@@ -22,8 +22,10 @@ const Dashboard = () => {
   return (
     <>
       {loading && <Loading />}
-      <Layout Name={Name} id={id} />
-      <TextArea />
+      <div className="flex">
+        <Layout Name={Name} id={id} />
+        <TextArea />
+      </div>
     </>
   );
 };
