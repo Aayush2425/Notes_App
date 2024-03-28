@@ -73,6 +73,10 @@ export const addBlock = async (req, res, next) => {
     next(error);
   }
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> c269e20ea5eca66957d60517d89c3dfaf572b9ea
 export const deleteBlock = async (req, res, next) => {
   const { id } = req.params;
   const { index } = req.body;
@@ -104,5 +108,8 @@ export const updateBlock = async (req, res, next) => {
     next(error);
   }
 };
+<<<<<<< HEAD
 
 export const addTodo = async (req, res, next) => {};
+=======
+>>>>>>> c269e20ea5eca66957d60517d89c3dfaf572b9ea

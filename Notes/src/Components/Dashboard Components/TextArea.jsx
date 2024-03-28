@@ -8,7 +8,10 @@ import Header_H3 from "./Header_H3";
 import { FaEllipsisVertical, FaPlus } from "react-icons/fa6";
 import Bullet_List from "./Bullet_List";
 import Actions from "./Actions";
+<<<<<<< HEAD
 import Todo from "./ToDo";
+=======
+>>>>>>> c269e20ea5eca66957d60517d89c3dfaf572b9ea
 const TextArea = () => {
   const [input, setInput] = useState("");
   const [block, setBlock] = useState([]);
