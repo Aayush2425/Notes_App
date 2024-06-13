@@ -11,10 +11,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
-// app.use((req, res, next) => {
-//   res.header("Cross-Origin-Opener-Policy", "same-origin");
-//   next();
-// });
 dotenv.config();
 app.listen(4000, () => {
   console.log("app is running on port 4000");
